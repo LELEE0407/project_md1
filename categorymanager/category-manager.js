@@ -1,15 +1,15 @@
-// let categoryList = [{
-//     id: Date.now(),
-//     categoryName: "Java",
-//     class: "Fukuoka",
-//     type: "Offline"
-// }, {
-//     id: Date.now(),
-//     userName: "Python",
-//     class: "Ha Noi",
-//     type: "Online"
-// }]
-// localStorage.setItem("categoryList", JSON.stringify(categoryList))
+let categoryList = [{
+    id: Date.now(),
+    categoryName: "Java",
+    class: "Fukuoka",
+    type: "Offline"
+}, {
+    id: Date.now(),
+    userName: "Python",
+    class: "Ha Noi",
+    type: "Online"
+}]
+localStorage.setItem("categoryList", JSON.stringify(categoryList))
 
 let userLogin = JSON.parse(localStorage.getItem("userLogin"))
 
@@ -28,6 +28,25 @@ function renderHeader() {
     `
 }
 renderHeader()
+function renderData() {
+    let categoryList = JSON.parse(localStorage.getItem("categoryList"));
+    let newStr = ``;
+    for (let i = 0; i < categoryList.length; i++) {
+        newStr += `
+           <tr>
+                <th scope="row">${i + 1}</th>
+                <td>${categoryList[i].categoryName}</td>
+                <td>${categoryList[i].class}</td>
+                <td>${categoryList[i].type}</td>
+                <td>
+                    <button onclick="deleteStudent(${i + 1}}>Delete</button>
+                </td>
+            </tr>
+        `
+    }
+    document.querySelector(".content_box tbody").innerHTML = newStr;
+}
+renderData()
 
 
 
@@ -37,6 +56,13 @@ function addCategory() {
         categoryName: window.prompt("Input category name"),
         class: window.prompt("Input class"),
         type: window.prompt("Input type"),
+    }
+    console.log("newCategory", newCategory);
+    console.log("category", newCategory.categoryName);
+    if (newCategory.categoryName === '' || newCategory.categoryName == null) {
+        console.log("da vao if");
+        alert("Not found")
+        return
     }
     let categoryList = JSON.parse(localStorage.getItem("categoryList"));
     categoryList.push(newCategory)

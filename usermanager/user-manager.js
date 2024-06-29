@@ -49,6 +49,7 @@ function renderData() {
 }
 renderData()
 
+
 function changeStatusUser(userId) {
     let userList = JSON.parse(localStorage.getItem("userList"));
     for (let i = 0; i < userList.length; i++) {
