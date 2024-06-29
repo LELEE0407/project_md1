@@ -1,15 +1,15 @@
-let categoryList = [{
-    id: Date.now(),
-    categoryName: "Java",
-    class: "Fukuoka",
-    type: "Offline"
-}, {
-    id: Date.now(),
-    userName: "Python",
-    class: "Ha Noi",
-    type: "Online"
-}]
-localStorage.setItem("categoryList", JSON.stringify(categoryList))
+// let categoryList = [{
+//     id: Date.now(),
+//     categoryName: "Java",
+//     class: "Fukuoka",
+//     type: "Offline"
+// }, {
+//     id: Date.now(),
+//     userName: "Python",
+//     class: "Ha Noi",
+//     type: "Online"
+// }]
+// localStorage.setItem("categoryList", JSON.stringify(categoryList))
 
 let userLogin = JSON.parse(localStorage.getItem("userLogin"))
 
@@ -39,7 +39,7 @@ function renderData() {
                 <td>${categoryList[i].class}</td>
                 <td>${categoryList[i].type}</td>
                 <td>
-                    <button onclick="deleteStudent(${i + 1}}>Delete</button>
+                    <button>Delete</button>
                 </td>
             </tr>
         `
@@ -68,4 +68,4 @@ function addCategory() {
     categoryList.push(newCategory)
     localStorage.setItem("categoryList", JSON.stringify(categoryList))
     renderData()
-}
+} 
