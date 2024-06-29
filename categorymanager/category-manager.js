@@ -1,3 +1,16 @@
+// let categoryList = [{
+//     id: Date.now(),
+//     categoryName: "Java",
+//     class: "Fukuoka",
+//     type: "Offline"
+// }, {
+//     id: Date.now(),
+//     userName: "Python",
+//     class: "Ha Noi",
+//     type: "Online"
+// }]
+// localStorage.setItem("categoryList", JSON.stringify(categoryList))
+
 let userLogin = JSON.parse(localStorage.getItem("userLogin"))
 
 function logout() {
@@ -16,45 +29,17 @@ function renderHeader() {
 }
 renderHeader()
 
-function renderData() {
-    let userList = JSON.parse(localStorage.getItem("userList"));
-    let newStr = ``;
-    for (let i = 0; i < userList.length; i++) {
-        newStr += `
-            <tr>
-                <th scope="row">${i + 1}</th>
-                <td>${userList[i].userName}</td>
-                <td>${userList[i].status ? "Normal" : "locked"}</td>
-                <td>
-                    <button onclick="changeStatusUser(${userList[i].id})">lock / unlock</button>
-                </td>
-            </tr>
-        `
-    }
-    document.querySelector("#user_box").innerHTML = newStr;
-}
-renderData()
 
-function changeStatusUser(userId) {
-    let userList = JSON.parse(localStorage.getItem("userList"));
-    for (let i = 0; i < userList.length; i++) {
-        if (userList[i].id == userId) {
-            userList[i].status = !userList[i].status;
-            break
-        }
-    }
-    localStorage.setItem("userList", JSON.stringify(userList))
-    renderData()
-}
-function addUser() {
-    let newUser = {
+
+function addCategory() {
+    let newCategory = {
         id: Date.now(),
-        userName: window.prompt("Input user name"),
-        password: window.prompt("Input password"),
-        status: true
+        categoryName: window.prompt("Input category name"),
+        class: window.prompt("Input class"),
+        type: window.prompt("Input type"),
     }
-    let userList = JSON.parse(localStorage.getItem("userList"));
-    userList.push(newUser)
-    localStorage.setItem("userList", JSON.stringify(userList))
+    let categoryList = JSON.parse(localStorage.getItem("categoryList"));
+    categoryList.push(newCategory)
+    localStorage.setItem("categoryList", JSON.stringify(categoryList))
     renderData()
 }

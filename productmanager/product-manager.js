@@ -1,17 +1,3 @@
-// let userList = [{
-//     id: Date.now(),
-//     userName: "Letai",
-//     password: "123",
-//     status: "Nomal"
-// }, {
-//     id: Date.now(),
-//     userName: "Lethai",
-//     password: "123",
-//     status: "Nomal"
-// }]
-// localStorage.setItem("userList", JSON.stringify(userList))
-
-
 let userLogin = JSON.parse(localStorage.getItem("userLogin"))
 
 function logout() {
@@ -48,27 +34,3 @@ function renderData() {
     document.querySelector("#user_box").innerHTML = newStr;
 }
 renderData()
-
-function changeStatusUser(userId) {
-    let userList = JSON.parse(localStorage.getItem("userList"));
-    for (let i = 0; i < userList.length; i++) {
-        if (userList[i].id == userId) {
-            userList[i].status = !userList[i].status;
-            break
-        }
-    }
-    localStorage.setItem("userList", JSON.stringify(userList))
-    renderData()
-}
-function addUser() {
-    let newUser = {
-        id: Date.now(),
-        userName: window.prompt("Input user name"),
-        password: window.prompt("Input password"),
-        status: true
-    }
-    let userList = JSON.parse(localStorage.getItem("userList"));
-    userList.push(newUser)
-    localStorage.setItem("userList", JSON.stringify(userList))
-    renderData()
-}

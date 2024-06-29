@@ -7,7 +7,6 @@
     <title>Management</title>
     <script>
         function checkAuthen() {
-
             console.log("localStorage.getItem('userLogin')", localStorage.getItem("userLogin"))
             let userLogin = localStorage.getItem("userLogin");
             if (!localStorage.getItem("userLogin")) {
@@ -38,15 +37,39 @@
                         <button onclick="window.location.href='/usermanager'">User Manager</button>
                     </li>
                     <li>
-                        <button>Category Manager</button>
+                        <button onclick="window.location.href='/categorymanager'">Category Manager</button>
                     </li>
                     <li>
-                        <button>Product Manager</button>
+                        <button onclick="window.location.href='/productmanager'">Product Manager</button>
                     </li>
                 </ul>
             </div>
             <div class="content_box">
                 <h2>Category Manager</h2>
+                <button class="btn btn-success" onclick="addCategory()">Add Category</button>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Category Name</th>
+                            <th scope="col">Class</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Tools</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Java</td>
+                            <td>Fukuoka</td>
+                            <td>Online</td>
+                            <td>
+                                <button>Edit</button>
+                                <button>Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
