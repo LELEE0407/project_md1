@@ -8,7 +8,7 @@
     <script>
         function checkAuthen() {
 
-            console.log("localStorage.getItem('userLogin')", localStorage.getItem("userLogin"))
+            // console.log("localStorage.getItem('userLogin')", localStorage.getItem("userLogin"))
             let userLogin = localStorage.getItem("userLogin");
             if (!localStorage.getItem("userLogin")) {
                 // alert("Not Found")
@@ -46,8 +46,11 @@
                 </ul>
             </div>
             <div class="content_box">
-                <h2>User Manager</h2>
-                <button class="btn btn-success" onclick="addUser()">Add User</button>
+                <div class="title">
+                    <h2>User Manager</h2>
+                    <button class="btn btn-success" onclick="addUser()">Add User</button>
+                    <input class="search" oninput="search(event)" type="text" placeholder="search">
+                </div>
                 <table class="table">
                     <thead>
                         <tr>
@@ -61,6 +64,12 @@
 
                     </tbody>
                 </table>
+                <div class="page_list">
+                    <!-- <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button> -->
+                </div>
             </div>
         </div>
     </div>

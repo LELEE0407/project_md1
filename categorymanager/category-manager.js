@@ -1,13 +1,9 @@
 // let categoryList = [{
 //     id: Date.now(),
-//     categoryName: "Java",
-//     class: "Fukuoka",
-//     type: "Offline"
+//     categoryName: "Book",
 // }, {
 //     id: Date.now(),
-//     userName: "Python",
-//     class: "Ha Noi",
-//     type: "Online"
+//     categoryName: "Pen"
 // }]
 // localStorage.setItem("categoryList", JSON.stringify(categoryList))
 
@@ -28,44 +24,110 @@ function renderHeader() {
     `
 }
 renderHeader()
-function renderData() {
-    let categoryList = JSON.parse(localStorage.getItem("categoryList"));
+function renderData(categoryList) {
+    // let categoryList = JSON.parse(localStorage.getItem("categoryList"));
     let newStr = ``;
     for (let i = 0; i < categoryList.length; i++) {
         newStr += `
-           <tr>
-                <th scope="row">${i + 1}</th>
+            <tr>
+                <td scope="row">${i + 1}</td>
                 <td>${categoryList[i].categoryName}</td>
-                <td>${categoryList[i].class}</td>
-                <td>${categoryList[i].type}</td>
+                <td>${categoryList[i].quantity}</td>
+                <td>${categoryList[i].price}</td>
                 <td>
-                    <button>Delete</button>
+                    <button onclick="deleteCategory(${categoryList[i].id})" class="btn btn-danger">Delete</button>
                 </td>
             </tr>
         `
+
     }
     document.querySelector(".content_box tbody").innerHTML = newStr;
 }
-renderData()
-
-
+// renderData(JSON.parse(localStorage.getItem("categoryList")))
 
 function addCategory() {
     let newCategory = {
         id: Date.now(),
         categoryName: window.prompt("Input category name"),
-        class: window.prompt("Input class"),
-        type: window.prompt("Input type"),
+        quantity: window.prompt("Input quantity"),
+        price: window.prompt("Input price")
     }
-    console.log("newCategory", newCategory);
-    console.log("category", newCategory.categoryName);
     if (newCategory.categoryName === '' || newCategory.categoryName == null) {
-        console.log("da vao if");
-        alert("Not found")
         return
     }
     let categoryList = JSON.parse(localStorage.getItem("categoryList"));
     categoryList.push(newCategory)
     localStorage.setItem("categoryList", JSON.stringify(categoryList))
-    renderData()
-} 
+    // renderData()
+    changePage(0)
+
+}
+function deleteCategory(categoryId) {
+    console.log("categoryId", categoryId);
+    let categoryList = JSON.parse(localStorage.getItem("categoryList"));
+    for (let i = 0; i < categoryList.length; i++) {
+        if (categoryList[i].id = categoryId) {
+            categoryList.splice(i, 1)
+            break
+        }
+    }
+    renderData(categoryList);
+    localStorage.setItem("categoryList", JSON.stringify(categoryList))
+}
+
+let limit = 3;
+let nowPage = 0;
+
+
+function printPageList() {
+    let categoryList = JSON.parse(localStorage.getItem("categoryList"));
+    // console.log(("page count"), Math.ceil(userList.length / limit));
+    let pageCount = Math.ceil(categoryList.length / limit);
+
+    let pageBtnList = ``;
+    for (let i = 0; i < pageCount; i++) {
+        pageBtnList += `
+            <button onclick="changePage(${i})" style="color: ${nowPage == i ? "red" : ""}">${i}</button>
+        `
+    }
+    document.querySelector(".page_list").innerHTML = pageBtnList;
+}
+printPageList()
+
+function loadPageData() {
+    let categoryList = JSON.parse(localStorage.getItem("categoryList"));
+    let start = nowPage * limit;
+    let end = start + limit;
+
+    let pageDataList = [];
+    for (let i = start; i < end; i++) {
+        if (categoryList[i]) {
+            pageDataList.push(categoryList[i])
+        } else {
+            break
+        }
+    }
+
+    renderData(pageDataList)
+}
+
+loadPageData()
+
+function changePage(page) {
+    nowPage = page;
+    printPageList()
+    loadPageData()
+}
+function search(event) {
+    let inputSearch = event.target.value
+    let categoryList = JSON.parse(localStorage.getItem("categoryList"));
+
+    let searchResult = [];
+
+    for (let i in categoryList) {
+        if (categoryList[i].categoryName.includes(inputSearch)) {
+            searchResult.push(categoryList[i])
+        }
+    }
+    renderData(searchResult)
+}

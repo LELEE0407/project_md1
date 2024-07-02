@@ -44,7 +44,24 @@ header {
 
 .menu_bar>ul>li {
     margin: 10px 1px;
+    margin-bottom: 15px;
 }
+
+.menu_bar button {
+    background-color: #f3f6f8;
+}
+
+.search {
+    width: 300px;
+    height: 35px;
+    display: flex;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    margin-left: 20px;
+}
+
+
 
 .content_box {
     height: 100%;
@@ -53,4 +70,14 @@ header {
     align-items: center;
     margin-top: 10px;
     border-top: 1px solid black;
+    border: 1px solid black;
+    margin-left: 10px;
+}
+
+.content_box .title {
+    margin-left: 20px;
+}
+
+.content_box .table {
+    margin-left: 15px;
 }

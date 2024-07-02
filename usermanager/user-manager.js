@@ -30,8 +30,8 @@ function renderHeader() {
 }
 renderHeader()
 
-function renderData() {
-    let userList = JSON.parse(localStorage.getItem("userList"));
+function renderData(userList) {
+    // let userList = JSON.parse(localStorage.getItem("userList"));
     let newStr = ``;
     for (let i = 0; i < userList.length; i++) {
         newStr += `
@@ -47,7 +47,7 @@ function renderData() {
     }
     document.querySelector("#user_box").innerHTML = newStr;
 }
-renderData()
+// renderData(JSON.parse(localStorage.getItem("userList")))
 
 
 function changeStatusUser(userId) {
@@ -68,8 +68,73 @@ function addUser() {
         password: window.prompt("Input password"),
         status: true
     }
+    if (newUser.userName.includes(" ")) {
+        alert("Do not enter spaces")
+        return
+    }
+    if (newUser.userName === '' || newUser.userName == null) {
+        alert("Not Found")
+        return
+    }
     let userList = JSON.parse(localStorage.getItem("userList"));
     userList.push(newUser)
     localStorage.setItem("userList", JSON.stringify(userList))
-    renderData()
+    renderData(userList)
+}
+
+let limit = 3;
+let nowPage = 0;
+
+
+function printPageList() {
+    let userList = JSON.parse(localStorage.getItem("userList"));
+    // console.log(("page count"), Math.ceil(userList.length / limit));
+    let pageCount = Math.ceil(userList.length / limit);
+
+    let pageBtnList = ``;
+    for (let i = 0; i < pageCount; i++) {
+        pageBtnList += `
+            <button onclick="changePage(${i})" style="color: ${nowPage == i ? "red" : ""}">${i}</button>
+        `
+    }
+    document.querySelector(".page_list").innerHTML = pageBtnList;
+}
+printPageList()
+
+function loadPageData() {
+    let userList = JSON.parse(localStorage.getItem("userList"));
+    let start = nowPage * limit;
+    let end = start + limit;
+
+    let pageDataList = [];
+    for (let i = start; i < end; i++) {
+        if (userList[i]) {
+            pageDataList.push(userList[i])
+        } else {
+            break
+        }
+    }
+
+    renderData(pageDataList)
+}
+
+loadPageData()
+
+function changePage(page) {
+    nowPage = page;
+    printPageList()
+    loadPageData()
+}
+function search(event) {
+    let inputSearch = event.target.value
+    let userList = JSON.parse(localStorage.getItem("userList"));
+
+    let searchResult = [];
+
+    for (let i in userList) {
+        if (userList[i].userName.includes(inputSearch)) {
+            searchResult.push(userList[i])
+        }
+    }
+    renderData(searchResult)
 }

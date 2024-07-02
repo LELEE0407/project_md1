@@ -45,30 +45,46 @@
                 </ul>
             </div>
             <div class="content_box">
-                <h2>Category Manager</h2>
-                <button class="btn btn-success" onclick="addCategory()">Add Category</button>
+                <div class="title">
+                    <h2>Category Manager</h2>
+                    <button class="btn btn-success" onclick="addCategory()">Add Category</button>
+                </div><input class="search" oninput="search(event)" type="text" placeholder="search">
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Category Name</th>
-                            <th scope="col">Class</th>
-                            <th scope="col">Type</th>
+                            <th>Category Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
                             <th scope="col">Tools</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- <tr>
                             <th scope="row">1</th>
-                            <td>Java</td>
-                            <td>Fukuoka</td>
-                            <td>Online</td>
+                            <td>Book</td>
+                            <td>50</td>
+                            <td>300</td>
                             <td>
-                                <button>Delete</button>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Pen</td>
+                            <td>
+                                <button class="btn btn-danger">Delete</button>
                             </td>
                         </tr> -->
+
                     </tbody>
                 </table>
+                <div class="page_list">
+                    <!-- <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button> -->
+                </div>
             </div>
         </div>
     </div>
