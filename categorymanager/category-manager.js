@@ -8,6 +8,7 @@
 // localStorage.setItem("categoryList", JSON.stringify(categoryList))
 
 let userLogin = JSON.parse(localStorage.getItem("userLogin"))
+let categoryList = JSON.parse(localStorage.getItem("categoryList"))
 
 function logout() {
     localStorage.removeItem("userLogin");
@@ -66,7 +67,7 @@ function deleteCategory(categoryId) {
     console.log("categoryId", categoryId);
     let categoryList = JSON.parse(localStorage.getItem("categoryList"));
     for (let i = 0; i < categoryList.length; i++) {
-        if (categoryList[i].id = categoryId) {
+        if (categoryList[i].id === categoryId) {
             categoryList.splice(i, 1)
             break
         }
@@ -94,8 +95,8 @@ function printPageList() {
 }
 printPageList()
 
-function loadPageData() {
-    let categoryList = JSON.parse(localStorage.getItem("categoryList"));
+function loadPageData(categoryList) {
+    // let categoryList = JSON.parse(localStorage.getItem("categoryList"));
     let start = nowPage * limit;
     let end = start + limit;
 
@@ -111,12 +112,12 @@ function loadPageData() {
     renderData(pageDataList)
 }
 
-loadPageData()
+loadPageData(JSON.parse(localStorage.getItem("categoryList")))
 
 function changePage(page) {
     nowPage = page;
     printPageList()
-    loadPageData()
+    loadPageData(JSON.parse(localStorage.getItem("categoryList")))
 }
 function search(event) {
     let inputSearch = event.target.value
@@ -129,5 +130,6 @@ function search(event) {
             searchResult.push(categoryList[i])
         }
     }
-    renderData(searchResult)
+    // renderData(searchResult)
+    loadPageData(searchResult)
 }

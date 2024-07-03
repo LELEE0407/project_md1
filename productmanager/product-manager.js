@@ -80,11 +80,12 @@ function addProduct() {
     // renderData()
     changePage(Math.ceil(productList.length / limit))
 }
+
 function deleteProduct(productId) {
     console.log("productId", productId);
     let productList = JSON.parse(localStorage.getItem("productList"));
     for (let i = 0; i < productList.length; i++) {
-        if (productList[i].id = productId) {
+        if (productList[i].id === productId) {
             productList.splice(i, 1)
             break
         }
@@ -92,6 +93,7 @@ function deleteProduct(productId) {
     renderData(productList);
     localStorage.setItem("productList", JSON.stringify(productList))
 }
+
 let limit = 3;
 let nowPage = 0;
 
@@ -111,8 +113,8 @@ function printPageList() {
 }
 printPageList()
 
-function loadPageData() {
-    let productList = JSON.parse(localStorage.getItem("productList"));
+function loadPageData(productList) {
+    // let productList = JSON.parse(localStorage.getItem("productList"));
     let start = nowPage * limit;
     let end = start + limit;
 
@@ -124,16 +126,17 @@ function loadPageData() {
             break
         }
     }
+    console.log("pageData", pageDataList);
 
     renderData(pageDataList)
 }
 
-loadPageData()
+loadPageData(JSON.parse(localStorage.getItem("productList")))
 
 function changePage(page) {
     nowPage = page;
     printPageList()
-    loadPageData()
+    loadPageData(JSON.parse(localStorage.getItem("productList")))
 }
 function search(event) {
     let inputSearch = event.target.value
@@ -146,6 +149,9 @@ function search(event) {
             searchResult.push(productList[i])
         }
     }
-    renderData(searchResult)
+    console.log("search", searchResult);
+    // renderData(searchResult)
+    loadPageData(searchResult)
+
 }
 

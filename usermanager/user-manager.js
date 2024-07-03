@@ -102,8 +102,8 @@ function printPageList() {
 }
 printPageList()
 
-function loadPageData() {
-    let userList = JSON.parse(localStorage.getItem("userList"));
+function loadPageData(userList) {
+    // let userList = JSON.parse(localStorage.getItem("userList"));
     let start = nowPage * limit;
     let end = start + limit;
 
@@ -118,13 +118,12 @@ function loadPageData() {
 
     renderData(pageDataList)
 }
-
-loadPageData()
+loadPageData(JSON.parse(localStorage.getItem("userList")))
 
 function changePage(page) {
     nowPage = page;
     printPageList()
-    loadPageData()
+    loadPageData(JSON.parse(localStorage.getItem("userList")))
 }
 function search(event) {
     let inputSearch = event.target.value
@@ -137,5 +136,7 @@ function search(event) {
             searchResult.push(userList[i])
         }
     }
-    renderData(searchResult)
+    console.log("search", searchResult);
+    // renderData(searchResult)
+    loadPageData(searchResult)
 }
