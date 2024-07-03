@@ -74,7 +74,7 @@ function addCategory() {
     categoryList.push(newCategory)
     localStorage.setItem("categoryList", JSON.stringify(categoryList))
     // renderData()
-    changePage(Math.ceil(categoryList.length / limit))
+    changePage(Math.ceil(categoryList.length / limit) && 0)
 
 }
 function deleteCategory(categoryId) {
@@ -133,6 +133,7 @@ function changePage(page) {
     printPageList()
     loadPageData(JSON.parse(localStorage.getItem("categoryList")))
 }
+
 function search(event) {
     let inputSearch = event.target.value
     let categoryList = JSON.parse(localStorage.getItem("categoryList"));

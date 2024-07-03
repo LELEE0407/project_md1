@@ -78,7 +78,7 @@ function addProduct() {
     productList.push(newProduct)
     localStorage.setItem("productList", JSON.stringify(productList))
     // renderData()
-    changePage(Math.ceil(productList.length / limit))
+    changePage(Math.ceil(productList.length / limit) && 0)
 }
 
 function deleteProduct(productId) {
@@ -138,6 +138,7 @@ function changePage(page) {
     printPageList()
     loadPageData(JSON.parse(localStorage.getItem("productList")))
 }
+
 function search(event) {
     let inputSearch = event.target.value
     let productList = JSON.parse(localStorage.getItem("productList"));

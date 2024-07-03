@@ -96,7 +96,7 @@ function addUser() {
     userList.push(newUser)
     localStorage.setItem("userList", JSON.stringify(userList))
     // renderData(userList)
-    changePage(Math.ceil(userList.length / limit))
+    changePage(Math.ceil(userList.length / limit) && 0)
 }
 
 let limit = 3;
@@ -141,6 +141,7 @@ function changePage(page) {
     printPageList()
     loadPageData(JSON.parse(localStorage.getItem("userList")))
 }
+
 function search(event) {
     let inputSearch = event.target.value
     let userList = JSON.parse(localStorage.getItem("userList"));
