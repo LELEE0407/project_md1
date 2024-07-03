@@ -49,14 +49,11 @@
                 <div class="title">
                     <h2>User Manager</h2>
                     <button class="btn btn-success" onclick="addUser()">Add User</button>
-                    <div>
-                        Choose user
-                        <select name="userName" id="userName">
-                            <!-- <option value="lelee">lelee</option>
-                            <option value="lethai">lethai</option> -->
-                        </select>
-                    </div>
                     <input class="search" oninput="search(event)" type="text" placeholder="search">
+                    <select onchange="sortList(event)" class="sortList">
+                        <option value="name_asc">Increases</option>
+                        <option value="name_desc">Decrease</option>
+                    </select>
                 </div>
                 <table class="table">
                     <thead>
@@ -68,7 +65,6 @@
                         </tr>
                     </thead>
                     <tbody id="user_box">
-
                     </tbody>
                 </table>
                 <div class="page_list">

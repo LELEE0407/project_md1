@@ -63,19 +63,19 @@ function changeStatusUser(userId) {
 }
 
 
-function getUser() {
-    let userList = JSON.parse(localStorage.getItem("userList"));
-    console.log("userList", userList);
-    let option = ``;
-    for (let i = 0; i < userList.length; i++) {
-        option += `
-            <option value="lelee">${userList[i].userName}</option>
-        `
-    }
-    console.log("userName", option);
-    document.querySelector("#userName").innerHTML = option;
-}
-getUser()
+// function getUser() {
+//     let userList = JSON.parse(localStorage.getItem("userList"));
+//     console.log("userList", userList);
+//     let option = ``;
+//     for (let i = 0; i < userList.length; i++) {
+//         option += `
+//             <option value="lelee">${userList[i].userName}</option>
+//         `
+//     }
+//     console.log("userName", option);
+//     document.querySelector("#userName").innerHTML = option;
+// }
+// getUser()
 
 function addUser() {
     let newUser = {
@@ -98,6 +98,20 @@ function addUser() {
     // renderData(userList)
     changePage(Math.ceil(userList.length / limit) && 0)
 }
+
+function deleteUser(userId) {
+    // console.log("userId", userId);
+    let userList = JSON.parse(localStorage.getItem("userList"));
+    for (let i = 0; i < userList.length; i++) {
+        if (userList[i].id === userId) {
+            userList.splice(i, 1)
+            break
+        }
+    }
+    renderData(userList);
+    localStorage.setItem("userList", JSON.stringify(userList))
+}
+
 
 let limit = 3;
 let nowPage = 0;
@@ -149,11 +163,23 @@ function search(event) {
     let searchResult = [];
 
     for (let i in userList) {
-        if (userList[i].userName.includes(inputSearch)) {
+        if ((userList[i].userName.toLowerCase()).includes(inputSearch.toLowerCase())) {
             searchResult.push(userList[i])
         }
     }
     console.log("search", searchResult);
     // renderData(searchResult)
     loadPageData(searchResult)
+}
+
+function sortList(event) {
+    console.log("event", event.target.value);
+    let userList = JSON.parse(localStorage.getItem("userList"))
+    if (event.target.value === "name_asc") {
+        userList.sort((a, b) => a.userName.localeCompare(b.userName))
+    } else {
+        userList.sort((a, b) => b.userName.localeCompare(a.userName))
+    }
+    localStorage.setItem("userList", JSON.stringify(userList))
+    loadPageData()
 }

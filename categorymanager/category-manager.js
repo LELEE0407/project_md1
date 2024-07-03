@@ -141,7 +141,7 @@ function search(event) {
     let searchResult = [];
 
     for (let i in categoryList) {
-        if (categoryList[i].categoryName.includes(inputSearch)) {
+        if ((categoryList[i].categoryName.toLowerCase()).includes(inputSearch.toLowerCase())) {
             searchResult.push(categoryList[i])
         }
     }

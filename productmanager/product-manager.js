@@ -146,7 +146,7 @@ function search(event) {
     let searchResult = [];
 
     for (let i in productList) {
-        if (productList[i].productName.includes(inputSearch)) {
+        if ((productList[i].productName.toLowerCase()).includes(inputSearch.toLowerCase())) {
             searchResult.push(productList[i])
         }
     }
