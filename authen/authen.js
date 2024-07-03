@@ -14,7 +14,7 @@ function signUp(event) {
     event.preventDefault();
     let newUser = {
         id: Date.now(),
-        userName: event.target.userName.value,
+        userName: event.target.userName.value, //lấy nội dung người dùng nhập qua form
         password: event.target.password.value,
         status: true
     }
@@ -23,7 +23,7 @@ function signUp(event) {
         alert("Not Found")
         return;
     }
-    if (newUser.newUser == "") {
+    if (newUser.userName == "") {
         alert("Not Found")
         return;
     }
@@ -50,7 +50,7 @@ function signIn(event) {
     let userList = JSON.parse(localStorage.getItem("userList"));
 
     let userResult = null;
-    for (let i = 0; i < userList.length; i++) {
+    for (let i = 0; i < userList.length; i++) {//kiểm tra user có ở trong danh sách hay không
         if (userList[i].userName == userInfor.userName) {
             userResult = userList[i];
             break;

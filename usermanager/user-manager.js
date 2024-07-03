@@ -79,7 +79,8 @@ function addUser() {
     let userList = JSON.parse(localStorage.getItem("userList"));
     userList.push(newUser)
     localStorage.setItem("userList", JSON.stringify(userList))
-    renderData(userList)
+    // renderData(userList)
+    changePage(Math.ceil(userList.length / limit))
 }
 
 let limit = 3;

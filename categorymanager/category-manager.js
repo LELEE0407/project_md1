@@ -59,7 +59,7 @@ function addCategory() {
     categoryList.push(newCategory)
     localStorage.setItem("categoryList", JSON.stringify(categoryList))
     // renderData()
-    changePage(0)
+    changePage(Math.ceil(categoryList.length / limit))
 
 }
 function deleteCategory(categoryId) {
