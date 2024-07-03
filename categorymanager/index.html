@@ -48,7 +48,16 @@
                 <div class="title">
                     <h2>Category Manager</h2>
                     <button class="btn btn-success" onclick="addCategory()">Add Category</button>
-                </div><input class="search" oninput="search(event)" type="text" placeholder="search">
+                    <div>
+                        Choose category
+                        <select name="categoryName" id="categoryName">
+                            <!-- <option value="Book">Book</option>
+                            <option value="Pen">Pen</option> -->
+                        </select>
+                    </div>
+                    <input class="search" oninput="search(event)" type="text" placeholder="search">
+                </div>
+
                 <table class="table">
                     <thead>
                         <tr>

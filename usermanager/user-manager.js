@@ -61,6 +61,22 @@ function changeStatusUser(userId) {
     localStorage.setItem("userList", JSON.stringify(userList))
     renderData()
 }
+
+
+function getUser() {
+    let userList = JSON.parse(localStorage.getItem("userList"));
+    console.log("userList", userList);
+    let option = ``;
+    for (let i = 0; i < userList.length; i++) {
+        option += `
+            <option value="lelee">${userList[i].userName}</option>
+        `
+    }
+    console.log("userName", option);
+    document.querySelector("#userName").innerHTML = option;
+}
+getUser()
+
 function addUser() {
     let newUser = {
         id: Date.now(),

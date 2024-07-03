@@ -46,6 +46,20 @@ function renderData(categoryList) {
 }
 // renderData(JSON.parse(localStorage.getItem("categoryList")))
 
+function getCategory() {
+    let categoryList = JSON.parse(localStorage.getItem("categoryList"));
+    console.log("categoryList", categoryList);
+    let option = ``;
+    for (let i = 0; i < categoryList.length; i++) {
+        option += `
+            <option value="Book">${categoryList[i].categoryName}</option>
+        `
+    }
+    console.log("categoryName", option);
+    document.querySelector("#categoryName").innerHTML = option;
+}
+getCategory()
+
 function addCategory() {
     let newCategory = {
         id: Date.now(),
