@@ -30,6 +30,8 @@ function renderHeader() {
 }
 renderHeader()
 
+
+
 function renderData(userList) {
     // let userList = JSON.parse(localStorage.getItem("userList"));
     let newStr = ``;
@@ -47,8 +49,7 @@ function renderData(userList) {
     }
     document.querySelector("#user_box").innerHTML = newStr;
 }
-// renderData(JSON.parse(localStorage.getItem("userList")))
-
+renderData(JSON.parse(localStorage.getItem("userList")))
 
 function changeStatusUser(userId) {
     let userList = JSON.parse(localStorage.getItem("userList"));
@@ -112,7 +113,6 @@ function deleteUser(userId) {
     localStorage.setItem("userList", JSON.stringify(userList))
 }
 
-
 let limit = 3;
 let nowPage = 0;
 
@@ -123,16 +123,16 @@ function printPageList() {
     let pageCount = Math.ceil(userList.length / limit);
 
     let pageBtnList = ``;
-    for (let i = 0; i < pageCount; i++) {
+    for (let i = 0; i < pageCount; i++) {//duyệt để in ra các nút
         pageBtnList += `
             <button onclick="changePage(${i})" style="color: ${nowPage == i ? "red" : ""}">${i}</button>
         `
     }
-    document.querySelector(".page_list").innerHTML = pageBtnList;
+    document.querySelector(".page_list").innerHTML = pageBtnList; //xét nd html
 }
 printPageList()
 
-function loadPageData(userList) {
+function loadPageData(userList) {//in dữ liệu  trang
     // let userList = JSON.parse(localStorage.getItem("userList"));
     let start = nowPage * limit;
     let end = start + limit;

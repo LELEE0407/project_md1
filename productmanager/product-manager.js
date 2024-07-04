@@ -19,7 +19,8 @@ function logout() {
     window.location.href = '/authen'
 }
 
-function renderHeader() {
+function renderHeader() { //thay đổi nd phần header khi được gọi
+    //Template literal cho phép tạo chuỗi có thể chứa các biểu thức 
     document.querySelector("header").innerHTML = `
         <span onclick="window.location.href='/'">Admin Manager</span>
         <div class="user_box">
@@ -30,7 +31,7 @@ function renderHeader() {
 }
 renderHeader()
 
-function renderData(productList) {
+function renderData(productList) {//hiển thị danh sách sản phẩm lên giao diện của trang web dựa trên dữ liệu được truyền vào qua tham số productList.
     // let productList = JSON.parse(localStorage.getItem("productList"));
     let newStr = ``;
     for (let i = 0; i < productList.length; i++) {
